@@ -65,6 +65,11 @@
             const expiry = document.getElementById('expiry').value;
             const cvv = document.getElementById('cvv').value;
 
+            if (!name || !email || !cardNumber || !expiry || !cvv) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
             // Simulate processing and show an alert.  In a real app, you'd send this data to a server-side payment processor.
             alert(`Payment submitted!\nName: ${name}\nEmail: ${email}\nCard Number: ${cardNumber}\nExpiry: ${expiry}\nCVV: ${cvv}`);
 
