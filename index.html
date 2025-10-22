@@ -1,51 +1,65 @@
 <!DOCTYPE html>
+<html><body><pre><!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Payment Form</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            padding: 20px;
+            background-color: #f8f9fa;
         }
-        .form-group {
-            margin-bottom: 15px;
+
+        .payment-form {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group label {
+            font-weight: 500;
         }
     </style>
 </head>
+
 <body>
+
     <div class="container">
-        <h2>Payment Information</h2>
-        <form id="paymentForm">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-            </div>
-            <div class="form-group">
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="expiry">Expiry (MM/YY):</label>
-                    <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
+        <div class="payment-form">
+            <h2 class="text-center mb-4">Payment Information</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" required>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="cvv">CVV:</label>
-                    <input type="text" class="form-control" id="cvv" placeholder="CVV" required>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Pay</button>
-        </form>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="expiry">Expiry:</label>
+                        <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" class="form-control" id="cvv" placeholder="Enter CVV" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Pay</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -53,25 +67,30 @@
     <script>
         $(document).ready(function() {
             $("#paymentForm").submit(function(event) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault(); // Prevent the default form submission
 
-                // Get form values (for demonstration purposes)
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var cardNumber = $("#cardNumber").val();
-                var expiry = $("#expiry").val();
-                var cvv = $("#cvv").val();
+                //Basic validation.  Replace with proper client-side validation if needed.
+                let name = $("#name").val();
+                let email = $("#email").val();
+                let cardNumber = $("#cardNumber").val();
+                let expiry = $("#expiry").val();
+                let cvv = $("#cvv").val();
 
-                //Basic validation for demonstration, should be significantly improved for production
-                if (!name || !email || !cardNumber || !expiry || !cvv) {
-                    alert("Please fill in all fields.");
+
+                if (name === "" || email === "" || cardNumber === "" || expiry === "" || cvv === "") {
+                    alert("Please fill in all the required fields.");
                     return;
                 }
 
-                // Simulate successful payment
-                alert("Payment successful!\nName: " + name + "\nEmail: " + email + "\nCard Number: " + cardNumber + "\nExpiry: " + expiry + "\nCVV: " + cvv);
+                // You would normally send the data to a server-side script here.
+                // For this example, we'll just show an alert.
+                alert("Payment submitted successfully!\n\nName: " + name + "\nEmail: " + email);
+
+                // Optionally, clear the form after submission:
+                $("#paymentForm")[0].reset();
             });
         });
     </script>
 </body>
+
 </html>
